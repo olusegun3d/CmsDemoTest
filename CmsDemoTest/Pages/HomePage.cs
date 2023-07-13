@@ -12,7 +12,6 @@ namespace CmsDemoTest.Pages
     {
         private IWebDriver driver;
         public HomePage(IWebDriver driver) : base (driver){ this.driver = driver; } 
-
         public IReadOnlyCollection<IWebElement> ProductThumbnailNamePrice => driver.FindElements(By.XPath("//li[contains(@class,'product type-product')]"));
         public IReadOnlyCollection<IWebElement> ProductDynamicLabel  => driver.FindElements(By.XPath("//li[contains(@class,'product type-product')]//a[@data-product_id]"));
         public IReadOnlyCollection<IWebElement> OnProductThumbnailAddToCart => driver.FindElements(By.XPath("//a[@class='woocommerce-LoopProduct-link woocommerce-loop-product__link']/following-sibling::a[1]"));

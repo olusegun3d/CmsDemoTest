@@ -7,6 +7,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="TestReporting\PASS \**" />
+    <EmbeddedResource Remove="TestReporting\PASS \**" />
+    <None Remove="TestReporting\PASS \**" />
+    <SpecFlowFeatureFiles Remove="TestReporting\PASS \**" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="TestReporting\PASS \**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="TestReporting\FAILL " />
+    <None Remove="TestReporting\PASS " />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Autofac" Version="7.0.1" />
     <PackageReference Include="ExtentReports" Version="4.1.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />

@@ -48,7 +48,6 @@ namespace CmsDemoTest.Pages
             }
         }
 
-
         public void SetQuantity(int quantity)
         {            
             ProductVariant1Qty.Click();

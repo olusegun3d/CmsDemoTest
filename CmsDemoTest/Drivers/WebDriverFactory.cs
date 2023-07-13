@@ -20,8 +20,8 @@ namespace CmsDemoTest.Drivers
             {
                 //The commented line immediately below has become necessary because there seems to be limited access to the website in the uk
                 //The only time the access is snmooth is around 7 to 8 pm onwards
-                //"Chrome" => new ChromeDriver("C:\\Work\\CmsDemoTest\\CmsDemoTest\\bin\\Debug\\chromedriver.exe", chromeOptions, TimeSpan.FromSeconds(500)),
-                "Chrome" => new ChromeDriver(),
+                "Chrome" => new ChromeDriver("C:\\Work\\CmsDemoTest\\CmsDemoTest\\bin\\Debug\\chromedriver.exe", chromeOptions, TimeSpan.FromSeconds(500)),
+                //"Chrome" => new ChromeDriver(),
                 "Edge" => new EdgeDriver(),
                 "Firefox" => new FirefoxDriver(),
                 _ => throw new ArgumentOutOfRangeException(BrowserName.ToString(), $"Unknown {BrowserName.ToString()}")

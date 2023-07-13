@@ -14,17 +14,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SpecFlowBDDAutomationFramework.Utility
+namespace CmsDemoTest.TestReporting
 {
     public class TestReport
     {
-        public static IWebDriver driver { get; set; }       
+        public static IWebDriver driver { get; set; }
         public static ExtentReports _extentReports;
         public static ExtentTest _feature;
         public static ExtentTest _scenario;
 
-        public static String dir = AppDomain.CurrentDomain.BaseDirectory;
-        public static String testResultPath = dir.Replace("bin\\Debug\\net6.0", "TestResults");
+        public static string dir = AppDomain.CurrentDomain.BaseDirectory;
+        public static string testResultPath = dir.Replace("bin\\Debug\\net6.0", "TestResults");
 
         public static void InitTestReport()
         {
@@ -42,10 +42,8 @@ namespace SpecFlowBDDAutomationFramework.Utility
             _extentReports.Flush();
         }
 
-
         public static void CreateScenarioNodes(ScenarioContext scenarioContext, IWebDriver driver)
         {
-
             string stepType = scenarioContext.StepContext.StepInfo.StepDefinitionType.ToString();
             string stepName = scenarioContext.StepContext.StepInfo.Text;
 
@@ -74,30 +72,29 @@ namespace SpecFlowBDDAutomationFramework.Utility
             //When scenario fails
             if (scenarioContext.TestError != null)
             {
-                var cleanErrorMessage = scenarioContext.TestError.Message.Remove(scenarioContext.TestError.Message.IndexOf('{'), (scenarioContext.TestError.Message.IndexOf('}')+1) - scenarioContext.TestError.Message.IndexOf('{')+1);
+                var cleanErrorMessage = scenarioContext.TestError.Message.Remove(scenarioContext.TestError.Message.IndexOf('{'), scenarioContext.TestError.Message.IndexOf('}') + 1 - scenarioContext.TestError.Message.IndexOf('{') + 1);
 
-                if (stepType == "Given")                
+                if (stepType == "Given")
                 {
                     _scenario.CreateNode<Given>(stepName).Fail(scenarioContext.TestError.Message,
                         MediaEntityBuilder.CreateScreenCaptureFromPath(addScreenshot(driver, scenarioContext, WebSite.cartPage.ShopLisTable, "red")).Build());
                 }
-                    else if (stepType == "When")
+                else if (stepType == "When")
                 {
                     _scenario.CreateNode<When>(stepName).Fail(scenarioContext.TestError.Message,
                         MediaEntityBuilder.CreateScreenCaptureFromPath(addScreenshot(driver, scenarioContext, WebSite.cartPage.ShopLisTable, "red")).Build());
                 }
                 else if (stepType == "Then")
-                {                    
+                {
                     _scenario.CreateNode<Then>(stepName).Fail(cleanErrorMessage,
                        MediaEntityBuilder.CreateScreenCaptureFromPath(addScreenshot(driver, scenarioContext, WebSite.cartPage.ShopLisTable, "red")).Build());
                 }
                 else if (stepType == "And")
                 {
                     _scenario.CreateNode<And>(stepName).Fail(scenarioContext.TestError.Message,
-                        MediaEntityBuilder.CreateScreenCaptureFromPath(addScreenshot(driver, scenarioContext, WebSite.cartPage.ShopLisTable, "red")).Build());                    
+                        MediaEntityBuilder.CreateScreenCaptureFromPath(addScreenshot(driver, scenarioContext, WebSite.cartPage.ShopLisTable, "red")).Build());
                 }
             }
-            
         }
 
 

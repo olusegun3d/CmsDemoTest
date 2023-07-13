@@ -89,9 +89,7 @@ namespace CmsDemoTest.Pages
                 int exclude = numbers.ToArray()[RandomlySelectedProduct];
                 numbers = numbers.Where(i => i != exclude);//regenerate a list without that number
                 ShortListed = numbers.Count();
-            }               
-            
+            }                           
         }
-
     }
 }

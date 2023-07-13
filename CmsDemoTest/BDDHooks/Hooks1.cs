@@ -6,11 +6,12 @@ using OpenQA.Selenium;
 using CmsDemoTest.Drivers;
 using AventStack.ExtentReports;
 using AventStack.ExtentReports.Gherkin.Model;
-using SpecFlowBDDAutomationFramework.Utility;
+//using SpecFlowBDDAutomationFramework.Utility;
 using CmsDemoTest.WebTestData;
 using NUnit.Framework.Interfaces;
+using CmsDemoTest.TestReporting;
 
-namespace CmsDemoTest.StepDefinitions
+namespace CmsDemoTest.BDDHooks
 {
     [Binding]
     public sealed class Hooks1 : TestReport
@@ -22,7 +23,6 @@ namespace CmsDemoTest.StepDefinitions
         {
             InitTestReport();
         }
-
 
         [AfterTestRun]
         public static void AfterTestRun()
