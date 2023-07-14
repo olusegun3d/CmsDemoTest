@@ -109,18 +109,23 @@ namespace CmsDemoTest.TestReporting
 
         public static string addScreenshot(IWebDriver driver, ScenarioContext scenarioContext, IWebElement webElement, string colour)
         {
-            string screenshotLocation;
+            string screenshotLocation = "";
 
             if (scenarioContext.TestError == null)
             {
                 HighlightWebElement(webElement, colour);
-                screenshotLocation = Path.Combine(testResultPath, "PASS " + scenarioContext.ScenarioInfo.Title + ".png");
+                screenshotLocation = Path.Combine(testResultPath, "PASS " + scenarioContext.StepContext.StepInfo.Text + ".png");
             }
-            else
+            if (scenarioContext.TestError != null)
             {
                 HighlightWebElement(webElement, colour);
-                screenshotLocation = Path.Combine(testResultPath, "FAIL " + scenarioContext.ScenarioInfo.Title + ".png");
+                screenshotLocation = Path.Combine(testResultPath, "FAIL " + scenarioContext.StepContext.StepInfo.Text + ".png");
             }
+            if (screenshotLocation == "") 
+            {
+                throw new InvalidDataException("screenshotLocation has not been initialised with a path");
+            }
+
             ITakesScreenshot takesScreenshot = (ITakesScreenshot)driver;
             Screenshot screenshot = takesScreenshot.GetScreenshot();
             screenshot.SaveAsFile(screenshotLocation, ScreenshotImageFormat.Png);

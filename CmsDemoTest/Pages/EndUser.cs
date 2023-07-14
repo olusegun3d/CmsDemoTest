@@ -55,15 +55,6 @@ namespace CmsDemoTest.Pages
             {
                 foreach (var item in WebSite.homePage.ProductDynamicLabel)
                 {
-                    //The code commented below uses selenium actions to go every product card. However I find it quite slow s I used java script
-                    /*Actions actions = new Actions(BasePage.driver);                
-                    actions.MoveToElement(item);
-                    actions.Perform();
-                    if (!item.Text.Equals("BUY ON WORDPRESS SWAG STORE", StringComparison.OrdinalIgnoreCase) && !item.Text.Equals("SELECT OPTIONS", StringComparison.OrdinalIgnoreCase))
-                    {
-                        numbers = numbers.Append(_homePage.ProductDynamicLabel.ToList().IndexOf(item));
-                    }*/
-
                     var itemText = ((IJavaScriptExecutor)driver).ExecuteScript("return arguments[0].firstChild.textContent;", item).ToString();
                     if (!itemText!.Equals("BUY ON WORDPRESS SWAG STORE", StringComparison.OrdinalIgnoreCase) && !itemText.Equals("READ MORE", StringComparison.OrdinalIgnoreCase))
                     {
@@ -93,3 +84,12 @@ namespace CmsDemoTest.Pages
         }
     }
 }
+
+//The code commented below uses selenium actions to go every product card. However I find it quite slow s I used java script
+/*Actions actions = new Actions(BasePage.driver);                
+actions.MoveToElement(item);
+actions.Perform();
+if (!item.Text.Equals("BUY ON WORDPRESS SWAG STORE", StringComparison.OrdinalIgnoreCase) && !item.Text.Equals("SELECT OPTIONS", StringComparison.OrdinalIgnoreCase))
+{
+    numbers = numbers.Append(_homePage.ProductDynamicLabel.ToList().IndexOf(item));
+}*/
